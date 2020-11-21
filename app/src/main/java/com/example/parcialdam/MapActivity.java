@@ -39,7 +39,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         myMap=googleMap;
         posiciones = new ArrayList<>();
         posiciones = getIntent().getStringArrayListExtra("posicion");
-        Toast.makeText(this, posiciones.toString(),Toast.LENGTH_SHORT).show();
 
         double u = new Random().nextDouble();
         double v = new Random().nextDouble();
@@ -57,6 +56,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         LatLng posicionOriginal1 = new LatLng(u,v);
         LatLng posicionOriginal2 = new LatLng(x,y);
+
+
+        //Método utilizado en lab05 para generar ubicaciones aleatorias
 
         LatLng posicion1 = SphericalUtil.computeOffset(
                 posicionOriginal1,

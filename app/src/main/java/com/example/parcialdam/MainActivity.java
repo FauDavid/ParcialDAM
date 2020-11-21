@@ -52,9 +52,17 @@ public class MainActivity extends AppCompatActivity {
         botonDatos.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                lista.add(ingresoTexto.getText().toString());
-                lista.add(ingresoTexto2.getText().toString());
-                Toast.makeText(getApplicationContext(), "Datos guardados!", Toast.LENGTH_LONG).show();
+                if(ingresoTexto.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "No hay datos 1 para guardar", Toast.LENGTH_LONG).show();
+                }
+                else if(ingresoTexto2.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "No hay datos 2 para guardar", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    lista.add(ingresoTexto.getText().toString());
+                    lista.add(ingresoTexto2.getText().toString());
+                    Toast.makeText(getApplicationContext(), "Datos guardados!", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -62,13 +70,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MapActivity.class);
-                if(!lista.isEmpty()){
+                if(!(lista.isEmpty())) {
                     i.putStringArrayListExtra("posicion", (ArrayList<String>) lista);
                     startActivity(i);
-                    Toast.makeText(getApplicationContext(), "Datos enviados al mapa, abriendo...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), lista.size() + " Datos enviados al mapa, abriendo...", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Debe guardar los datos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Debe guardar los datos para ver el mapa.", Toast.LENGTH_LONG).show();
                 }
             }
         });
